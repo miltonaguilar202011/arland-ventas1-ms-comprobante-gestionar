@@ -57,6 +57,8 @@ public class ItemComprobanteEntity {
 		this.importeParcial = importeParcial;
 	}
 
+	public ItemComprobanteEntity() {}
+	
 	public ItemComprobanteEntity(Integer ordItem, String idProducto, String detalle, Double cantidad,
 			Double costoUnitario, Double importeParcial) {
 		super();

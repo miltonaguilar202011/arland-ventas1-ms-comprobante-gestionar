@@ -6,10 +6,12 @@ import java.util.List;
 
 public abstract class ComprobanteBase {
 
+	public ComprobanteBase() {};
+	
 	public ComprobanteBase(String idContribuyente, String tipoComprobante, String serieComprobante,
 			Long numeroComprobante, Double montoComprobante, String idCliente, String idEmpleado, Date fechaRegistro,
 			Date fechaCancelacion, String estadoComprobante
-			//, List<ItemComprobanteEntity> items
+			, List<ItemComprobanteEntity> items
 			) {
 		super();
 		this.idContribuyente = idContribuyente;
@@ -22,7 +24,7 @@ public abstract class ComprobanteBase {
 		this.fechaRegistro = fechaRegistro;
 		this.fechaCancelacion = fechaCancelacion;
 		this.estadoComprobante = estadoComprobante;
-		//this.items = items;
+		this.items = items;
 	}
 
 	// TODO Auto-generated constructor stub
@@ -37,7 +39,7 @@ public abstract class ComprobanteBase {
 	private Date fechaCancelacion;
 	private String estadoComprobante;
 	
-	//private List<ItemComprobanteEntity> items  = new ArrayList<ItemComprobanteEntity>();
+	private List<ItemComprobanteEntity> items  = new ArrayList<ItemComprobanteEntity>();
 	
 	public String getIdContribuyente() {
 		return idContribuyente;
@@ -128,7 +130,7 @@ public abstract class ComprobanteBase {
 				+ estadoComprobante + "]";
 	}
 
-	/*
+	
 	public List<ItemComprobanteEntity> getItems() {
 		return items;
 	}
@@ -137,7 +139,7 @@ public abstract class ComprobanteBase {
 	public void setItems(List<ItemComprobanteEntity> items) {
 		this.items = items;
 	}
-	*/
+	
 
 
 

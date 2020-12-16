@@ -8,7 +8,7 @@ import org.springframework.data.mongodb.core.mapping.Document;
 
 @Document(collection = "comprobantes")
 public class FacturaEntity extends ComprobanteBase {
-
+	
 	@Id
 	private String id;
 
@@ -26,15 +26,18 @@ public class FacturaEntity extends ComprobanteBase {
 	public void setIdContribuyenteCliente(String idContribuyenteCliente) {
 		this.idContribuyenteCliente = idContribuyenteCliente;
 	}
+	
+	public FacturaEntity() {}
+	
 	public FacturaEntity(String idContribuyente, String tipoComprobante, String serieComprobante,
 			Long numeroComprobante, Double montoComprobante, String idCliente, String idEmpleado, Date fechaRegistro,
 			Date fechaCancelacion, String estadoComprobante, 
-			//List<ItemComprobanteEntity> items, 
+			List<ItemComprobanteEntity> items, 
 			Double importeIVA,
 			String idContribuyenteCliente) {
 		super(idContribuyente, tipoComprobante, serieComprobante, numeroComprobante, montoComprobante, idCliente,
 				idEmpleado, fechaRegistro, fechaCancelacion, estadoComprobante
-				//, items
+				, items
 				);
 		this.importeIVA = importeIVA;
 		this.idContribuyenteCliente = idContribuyenteCliente;
