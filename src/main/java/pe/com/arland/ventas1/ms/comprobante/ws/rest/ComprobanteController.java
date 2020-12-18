@@ -21,6 +21,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import com.mongodb.client.result.DeleteResult;
 
 import pe.com.arland.cliente1.registro.entity.FacturaEntity;
+import pe.com.arland.cliente1.registro.entity.FacturaEntityRequest;
 import pe.com.arland.cliente1.registro.entity.ItemComprobanteEntity;
 import pe.com.arland.ventas1.ms.comprobante.main.FacturaRepository;
 
@@ -198,5 +199,58 @@ public class ComprobanteController {
 	  String eliminarFacturas() {
 		  facturaRepository.deleteAll();
 		  return "ok";
+	  }
+	  
+	  
+	  @GetMapping("/save/factura3")
+	  @ResponseBody
+	  public String RegitrarFactura(@RequestBody FacturaEntityRequest factura) {
+		  try {
+			 FacturaEntity factura1=new FacturaEntity();
+			 factura1.setEstadoComprobante(factura.getEstadoComprobante());
+			 factura1.setFechaCancelacion(factura.getFechaCancelacion());
+			 factura1.setFechaRegistro(factura.getFechaRegistro());
+			 factura1.setIdCliente(factura.getIdCliente());
+			 factura1.setIdContribuyenteCliente(factura.getIdContribuyenteCliente());
+			 factura1.setIdContribuyente(factura.getIdContribuyente());
+			 factura1.setIdEmpleado(factura.getIdEmpleado());
+			 factura1.setImporteIVA(factura.getImporteIVA());
+			 factura1.setMontoComprobante(factura.getMontoComprobante());
+			 factura1.setNumeroComprobante(factura.getNumeroComprobante());
+			 factura1.setSerieComprobante(factura.getSerieComprobante());
+			 factura1.setTipoComprobante(factura.getTipoComprobante());
+			 
+			 List<ItemComprobanteEntity> listItemComprobanteSave= new ArrayList<ItemComprobanteEntity>();
+			 List<ItemComprobanteEntity> listItemComprobante= factura.getItems();
+			 listItemComprobante.stream().forEach((p)->{
+				 ItemComprobanteEntity itemComprobanteEntity = new ItemComprobanteEntity();
+			 itemComprobanteEntity.setCantidad(p.getCantidad());
+			 itemComprobanteEntity.setCostoUnitario(p.getCostoUnitario());
+			 itemComprobanteEntity.setDetalle(p.getDetalle());
+			 itemComprobanteEntity.setIdProducto(p.getIdProducto());
+			 itemComprobanteEntity.setImporteParcial(p.getImporteParcial());
+			 itemComprobanteEntity.setOrdItem(p.getOrdItem());
+			 listItemComprobanteSave.add(itemComprobanteEntity);
+			 });
+			 factura1.setItems(listItemComprobanteSave);
+			 facturaRepository.save(factura1);
+		  } catch (Exception e) {
+				String strErr = e.getMessage();
+				return e.getMessage();
+		  }
+		  return "save Factura";
+	  }
+	  
+	  @GetMapping("/comprobantePago/recuperarFactura3")
+	  @ResponseBody
+	  FacturaEntity  recuperarUnaFacturaList(@RequestParam String idComprobante) {
+		try {
+	    
+		        FacturaEntity findFactura = mongoOps.findById(idComprobante, FacturaEntity.class);
+		        return findFactura;
+		} catch (Exception e) {
+			String strErrMessage = e.getMessage();
+			return null;
+		}
 	  }
 }
