@@ -19,9 +19,8 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.runner.RunWith;
 
 import pe.com.arland.cliente1.registro.entity.FacturaEntity;
-//import pe.com.arland.cliente1.registro.entity.FacturaEntity;
 import pe.com.arland.cliente1.registro.entity.ItemComprobanteEntity;
-//import pe.com.arland.ventas1.repository.mongodb.FacturaRepository;
+
 
 //@RunWith(EasyMockRunner.class)
 public class DR_DataEasyMockTests {
@@ -33,7 +32,7 @@ public class DR_DataEasyMockTests {
 	    {
 	    	//Llamamos al createMock método para crear un simulacro de la clase que queremos
 	    	//facturaService = createMock( "facturaService", FacturaRepository.class );
-	    	facturaService = EasyMock.createMock(FacturaRepository.class);
+	    	facturaService = EasyMock.createMock("mockFacturaRepository",FacturaRepository.class);
 	    }
 	 
 	    @Test

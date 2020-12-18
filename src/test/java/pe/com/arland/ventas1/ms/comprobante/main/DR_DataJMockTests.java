@@ -27,12 +27,12 @@ public class DR_DataJMockTests {
 	    @BeforeEach
 	    public void setUp()
 	    {
-	    	facturaService = context.mock( FacturaRepository.class );      
+	    	facturaService = context.mock(FacturaRepository.class);      
 	    }
 	 
 	    @Test
 	    public void testCallMocks() {
-	    	facturaService = context.mock( FacturaRepository.class );
+	    	facturaService = context.mock(FacturaRepository.class);
 	    	context.checking( new Expectations()                            
 	        {
 	            {
