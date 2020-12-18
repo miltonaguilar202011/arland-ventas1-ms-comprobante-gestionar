@@ -23,6 +23,8 @@ dependencies {
 	implementation 'org.springframework.boot:spring-boot-starter-actuator'
 	implementation 'org.springframework.boot:spring-boot-starter-web'
 	
+	//EASY MOCK
+	testCompile group: 'org.easymock', name: 'easymock', version: '4.2'
 }
 
 test {
